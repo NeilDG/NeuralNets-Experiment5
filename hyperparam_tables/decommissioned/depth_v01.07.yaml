@@ -1,0 +1,26 @@
+model_type: 5 #5 - monodepth
+input_nc: 3
+patch_size: 64
+
+#0 - COARE, 1 - CCS Cloud, 2 - 2080Ti, 3 - 3090
+batch_size: [256, 256, 128, 420] #amount of images to accumulate before backprop
+load_size: [256, 256, 128, 420] #amount of images to load in GPU. load_size <= batch_size
+
+num_blocks: 10
+weight_decay: 0.0
+dropout_rate: 0.0
+use_cbam: True
+use_involution: False
+augment_key: "augmix"
+
+g_lr: 0.00002
+d_lr: 0.00002
+min_epochs: 100
+max_epochs: 100
+
+dataset_version: "v01_fcity"
+dataset_repeats: 5
+
+
+
+

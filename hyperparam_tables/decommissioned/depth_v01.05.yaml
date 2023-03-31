@@ -1,0 +1,26 @@
+model_type: 1 #1 = vanilla cycle gan, 2 = u-net, 3 = ffa-net
+input_nc: 3
+patch_size: 256
+
+#0 - COARE, 1 - CCS Cloud, 2 - 2080Ti, 3 - 3090
+batch_size: [48, 16, 4, 48] #amount of images to accumulate before backprop
+load_size: [48, 16, 4, 48] #amount of images to load in GPU. load_size <= batch_size
+
+num_blocks: 10
+weight_decay: 0.0
+dropout_rate: 0.0
+use_cbam: True
+use_involution: False
+augment_key: "augmix"
+
+g_lr: 0.0002
+d_lr: 0.0005
+min_epochs: 15
+max_epochs: 20
+
+dataset_version: "v01_fcity"
+dataset_repeats: 5
+
+
+
+
