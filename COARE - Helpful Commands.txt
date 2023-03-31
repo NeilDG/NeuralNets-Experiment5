@@ -3,7 +3,7 @@
 clear
 
 //For directories
-cd scratch3/NeuralNets-GenerativeExperiment-V01.XX.XX
+cd scratch3/NeuralNets-Experiment5-V01.XX.XX
 cd scratch3/Visdom
 unzip "scratch2/SynthWeather Dataset 10.zip"
 
