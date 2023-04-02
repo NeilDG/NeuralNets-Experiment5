@@ -33,6 +33,7 @@ def update_config(opts):
     global_config.server_config = opts.server_config
     global_config.plot_enabled = opts.plot_enabled
     global_config.save_every_iter = opts.save_every_iter
+    global_config.img_to_load = opts.img_to_load
     global_config.general_config["cuda_device"] = opts.cuda_device
     global_config.general_config["network_version"] = opts.network_version
     global_config.general_config["iteration"] = opts.iteration

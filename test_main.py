@@ -31,6 +31,7 @@ parser.add_option('--plot_enabled', type=int, default=1)
 def update_config(opts):
     global_config.server_config = opts.server_config
     global_config.plot_enabled = opts.plot_enabled
+    global_config.img_to_load = opts.img_to_load
     global_config.general_config["network_version"] = opts.network_version
     global_config.general_config["iteration"] = opts.iteration
     network_config = ConfigHolder.getInstance().get_network_config()
@@ -95,7 +96,7 @@ def main(argv):
     print("Dataset path: ", global_config.path)
 
     plot_utils.VisdomReporter.initialize()
-    global_config.general_config["test_size"] = 128
+    global_config.general_config["test_size"] = 256
     synth_loader, dataset_count = dataset_loader.load_test_dataset(rgb_path, exr_path)
     dt = depth_tester.DepthTester(device)
     start_epoch = global_config.general_config["current_epoch"]
@@ -133,7 +134,6 @@ def main(argv):
         kitti_depth_path = "X:/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
 
         # compute total progress
-        global_config.general_config["test_size"] = 64
         kitti_loader, dataset_count = dataset_loader.load_kitti_test_dataset(kitti_rgb_path, kitti_depth_path)
         dt = depth_tester.DepthTester(device)
         start_epoch = global_config.general_config["current_epoch"]

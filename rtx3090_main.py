@@ -4,13 +4,13 @@ import time
 
 
 def train_depth():
-    os.system("python \"train_main.py\" --server_config=3 --img_to_load=-1 "
-              "--plot_enabled=0 --save_every_iter=500 --network_version=\"depth_v01.13\" "
-              "--iteration=1")
+    # os.system("python \"train_main.py\" --server_config=3 --img_to_load=-1 "
+    #           "--plot_enabled=0 --save_every_iter=500 --network_version=\"depth_v01.13\" "
+    #           "--iteration=2")
 
     os.system("python \"train_main.py\" --server_config=3 --img_to_load=-1 "
               "--plot_enabled=0 --save_every_iter=500 --network_version=\"depth_v01.13\" "
-              "--iteration=2")
+              "--iteration=3")
 
     # FOR TESTING
     # os.system("python \"train_main.py\" --server_config=3 --img_to_load=-1 "
@@ -18,11 +18,11 @@ def train_depth():
     #           "--iteration=1")
 
 def test_depth():
-    os.system("python \"test_main.py\" --server_config=3 --img_to_load=1000 --plot_enabled=1 --network_version=\"depth_v01.13\" "
+    os.system("python \"test_main.py\" --server_config=3 --img_to_load=1000 --plot_enabled=1 --network_version=\"depth_v01.14\" "
               "--iteration=1")
-    #
-    # os.system("python \"test_main.py\" --server_config=3 --img_to_load=-1 --plot_enabled=1 --network_version=\"depth_v01.12\" "
-    #           "--iteration=4")
+
+    os.system("python \"test_main.py\" --server_config=3 --img_to_load=1000 --plot_enabled=1 --network_version=\"depth_v01.14\" "
+              "--iteration=2")
 
 def train_img2img():
     os.system("python \"train_img2img_main.py\" --server_config=3 --img_to_load=-1 "
@@ -43,8 +43,8 @@ def test_img2img():
               "--iteration=4")
 
 def main():
-    train_depth()
-    # test_depth()
+    # train_depth()
+    test_depth()
     #
     # train_img2img()
     #  test_img2img()
