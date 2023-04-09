@@ -43,12 +43,12 @@ def test_img2img():
               "--iteration=4")
 
 def main():
-    # train_depth()
-    test_depth()
+    train_depth()
+    # test_depth()
     #
     # train_img2img()
     #  test_img2img()
-    # os.system("shutdown /s /t 1")
+    os.system("shutdown /s /t 1")
 
 if __name__ == "__main__":
     main()
