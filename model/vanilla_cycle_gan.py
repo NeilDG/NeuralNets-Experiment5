@@ -55,7 +55,7 @@ class Generator(nn.Module):
                  use_cbam = False, norm = "batch"):
         super(Generator, self).__init__()
 
-        print("Set CycleGAN norm to: ", norm)
+        print("Set CycleGAN norm to: ", norm, "Dropout rate: ", dropout_rate)
 
         # Initial convolution block       
         model = [   nn.ReflectionPad2d(2),

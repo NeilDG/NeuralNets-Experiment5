@@ -28,22 +28,16 @@ class DepthDataset(data.Dataset):
 
         self.norm_op = transforms.Normalize((0.5, ), (0.5, ))
 
-        if ("augmix" in self.augment_mode and self.transform_config == 1):
-            self.initial_op = transforms.Compose([
-                transforms.ToPILImage(),
-                transforms.Resize((256, 256), antialias=True),
-                transforms.AugMix(),
-                transforms.RandomHorizontalFlip(0.5),
-                transforms.RandomVerticalFlip(0.5),
-                transforms.ToTensor()])
-        else:
-            self.initial_op = transforms.Compose([
-                transforms.ToPILImage(),
-                transforms.Resize((256, 256), antialias=True),
-                transforms.RandomHorizontalFlip(0.5),
-                transforms.RandomVerticalFlip(0.5),
-                transforms.ToTensor()
-            ])
+        self.initial_op = transforms.Compose([
+            transforms.ToPILImage(),
+            transforms.Resize((256, 256), antialias=True),
+            transforms.RandomHorizontalFlip(0.5),
+            transforms.RandomVerticalFlip(0.5),
+            transforms.ToTensor()
+        ])
+
+        self.noise_op = K.RandomGaussianNoise(p=0.5, mean=0.0, std=np.random.uniform(0.0, 0.15))
+        self.jitter_op = transforms.ColorJitter(saturation=(0.5, 2.0), brightness=(0.5, 1.5), contrast=(0.5, 1.5))
 
         if (self.transform_config == 1):
             patch_size = config_holder.get_network_attribute("patch_size", 32)
@@ -58,12 +52,18 @@ class DepthDataset(data.Dataset):
             rgb_img = cv2.cvtColor(rgb_img, cv2.COLOR_BGR2RGB)
             rgb_img = self.initial_op(rgb_img)
 
+            if("color_jitter" in self.augment_mode):
+                rgb_img = torch.squeeze(self.jitter_op(rgb_img))
+            if ("random_noise" in self.augment_mode):
+                rgb_img = torch.squeeze(self.noise_op(rgb_img))
+
             torch.set_rng_state(state)
             # depth_img = cv2.imread(self.exr_list[idx], cv2.IMREAD_ANYCOLOR | cv2.IMREAD_ANYDEPTH)
             depth_img = cv2.imread(self.exr_list[idx])
             depth_img = depth_img.astype(np.uint8)
             depth_img = cv2.cvtColor(depth_img, cv2.COLOR_BGR2GRAY)
             depth_img = 1.0 - self.initial_op(depth_img)
+
 
             if (self.transform_config == 1):
                 crop_indices = transforms.RandomCrop.get_params(rgb_img, output_size=self.patch_size)
