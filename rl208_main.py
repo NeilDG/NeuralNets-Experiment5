@@ -6,11 +6,15 @@ import time
 def train_depth():
     os.system("python \"train_main.py\" --server_config=4 --img_to_load=-1 "
               "--plot_enabled=0 --save_every_iter=500 --network_version=\"depth_v01.14\" "
-              "--iteration=1")
+              "--iteration=2")
 
     os.system("python \"train_main.py\" --server_config=4 --img_to_load=-1 "
               "--plot_enabled=0 --save_every_iter=500 --network_version=\"depth_v01.14\" "
-              "--iteration=2")
+              "--iteration=3")
+
+    os.system("python \"train_main.py\" --server_config=4 --img_to_load=-1 "
+              "--plot_enabled=0 --save_every_iter=500 --network_version=\"depth_v01.14\" "
+              "--iteration=4")
 
 def test_depth():
     os.system("python \"test_main.py\" --server_config=4 --img_to_load=-1 --plot_enabled=1 --network_version=\"depth_v01.04\" "

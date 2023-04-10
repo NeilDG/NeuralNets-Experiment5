@@ -16,8 +16,6 @@ module load anaconda/3-2021.11
 module load cuda/10.1_cudnn-7.6.5
 source activate NeilGAN_V2
 
-git clone -b "workspace/V01.XX.XX" "https://github.com/NeilDG/NeuralNets-Experiment4.git" "NeuralNets-Experiment4-V01.XX.XX"
-
 #do fresh install
 #pip-review --local --auto
 #pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118

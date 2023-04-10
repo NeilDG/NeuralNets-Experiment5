@@ -13,6 +13,10 @@ def load_train_dataset(rgb_path, exr_path):
     exr_list = glob.glob(exr_path)
     rgb_list = glob.glob(rgb_path)
 
+    if (global_config.img_to_load > 0):
+        exr_list = exr_list[0: global_config.img_to_load]
+        rgb_list = rgb_list[0: global_config.img_to_load]
+
     for i in range(0, network_config["dataset_repeats"]): #TEMP: formerly 0-1
         rgb_list += rgb_list
         exr_list += exr_list
@@ -40,6 +44,10 @@ def load_test_dataset(rgb_path, exr_path):
 
     exr_list = glob.glob(exr_path)
     rgb_list = glob.glob(rgb_path)
+
+    if (global_config.img_to_load > 0):
+        exr_list = exr_list[0: global_config.img_to_load]
+        rgb_list = rgb_list[0: global_config.img_to_load]
 
     temp_list = list(zip(rgb_list, exr_list))
     random.shuffle(temp_list)

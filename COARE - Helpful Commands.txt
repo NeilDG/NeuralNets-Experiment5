@@ -3,7 +3,7 @@
 clear
 
 //For directories
-cd scratch3/NeuralNets-GenerativeExperiment-V01.XX.XX
+cd scratch3/NeuralNets-Experiment5-V01.XX.XX
 cd scratch3/Visdom
 unzip "scratch2/SynthWeather Dataset 10.zip"
 
@@ -19,20 +19,18 @@ git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 
 //Execute job
-sbatch --dependency=afterany:448263 slurm_download.slurm
 sbatch slurm_download.sh
 sbatch slurm_install.sh
 sbatch slurm_visdom_test.slurm
 sbatch visdom_run.slurm
 sbatch -w saliksik-cpu-23 visdom_run.slurm
 sbatch -w saliksik-cpu-23 --dependency=afterany:335892 visdom_run.slurm
-
-sbatch --dependency=afterany:448226 script_debug.slurm "depth_v01.15" 1
+sbatch --dependency=afterany:448375 script_debug.slurm "depth_v01.15" 1
 
 sbatch script_debug.slurm "depth_v01.15" 1
 sbatch slurm_download.sh
-sbatch script_gpu_1.slurm "depth_v01.06" 9
-sbatch script_gpu_2.slurm "depth_v01.06" 10
+sbatch script_gpu_1.slurm "depth_v01.16" 18
+sbatch script_gpu_2.slurm "depth_v01.16" 19
 
 sbatch --dependency=afterany:342338 script_debug.slurm
 sbatch --dependency=afterany:342351 script_1.slurm
@@ -68,6 +66,7 @@ git clone -b "workspace/V01.XX.XX" "https://github.com/NeilDG/NeuralNets-Experim
 
 git switch "workspace/V01.XX.XX"
 cd NeuralNets-Experiment5-V01.XX.XX
+cd NeuralNets-Experiment4-V01.XX.XX
 python "ccs1_main.py"
 python "ccs2_main.py"
 python3 "titan1_main.py"
