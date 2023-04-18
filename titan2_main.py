@@ -35,9 +35,9 @@ def test_img2img():
               "--iteration=1")
 
 def main():
-    # train_depth()
+    train_depth()
     # test_depth()
-    train_img2img()
+    # train_img2img()
     # os.system("shutdown /s /t 1")
 
 if __name__ == "__main__":
