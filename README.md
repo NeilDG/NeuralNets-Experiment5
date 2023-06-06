@@ -1,2 +1,2 @@
-# NeuralNets-Experiment4
-A workspace dedicated for 4th chapter of NeuralNets experiments
+# Synth-3DLocalization
+A workspace dedicated for 5th chapter of NeuralNets experiments
