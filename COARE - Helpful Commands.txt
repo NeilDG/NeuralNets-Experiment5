@@ -3,12 +3,12 @@
 clear
 
 //For directories
-cd scratch3/NeuralNets-Experiment5-V01.XX.XX
+cd scratch3/Synth-3D-V01.XX.XX
 cd scratch3/Visdom
 unzip "scratch2/SynthWeather Dataset 10.zip"
 
-git clone -b "workspace/V01.XX.XX" "https://github.com/NeilDG/NeuralNets-Experiment5.git" "scratch3/NeuralNets-Experiment5-V01.XX.XX"
-rm -rf "/scratch1/scratch2/neil.delgallego/NeuralNets-GenerativeExperiment-V01.XX.XX"
+git clone -b "workspace/V01.XX.XX" "https://github.com/NeilDG/Synth-3DLocalization.git" "scratch3/Synth-3D-V01.XX.XX"
+rm -rf "/scratch3/neil.delgallego/NeuralNets-GenerativeExperiment-V61.XX.XX-2/"
 rm -rf "/scratch1/scratch2/neil.delgallego/SynthV3_Raw/"
 rm -rf "/scratch1/scratch2/neil.delgallego/SynthWeather Dataset 10/"
 
@@ -29,8 +29,8 @@ sbatch --dependency=afterany:448375 script_debug.slurm "depth_v01.15" 1
 
 sbatch script_debug.slurm "depth_v01.01_iid" 5
 sbatch slurm_download.sh
-sbatch script_gpu_1.slurm "depth_v01.16" 18
-sbatch script_gpu_2.slurm "depth_v01.16" 19
+sbatch -w saliksik-gpu-09 script_gpu_1.slurm "depth_v01.16" 18
+sbatch -w saliksik-gpu-10 script_gpu_2.slurm "depth_v01.16" 19
 
 sbatch --dependency=afterany:342338 script_debug.slurm
 sbatch --dependency=afterany:342351 script_1.slurm
