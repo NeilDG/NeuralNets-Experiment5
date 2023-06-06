@@ -57,10 +57,10 @@ fi
 DATASET_NAME="KITTI Depth Test"
 echo "$OUTPUT_DIR/$DATASET_NAME.zip"
 unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
-
-DATASET_NAME="v05_iid"
-echo "$OUTPUT_DIR/$DATASET_NAME.zip"
-unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
+#
+#DATASET_NAME="v05_iid"
+#echo "$OUTPUT_DIR/$DATASET_NAME.zip"
+#unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
 DATASET_NAME="v06_iid_base/v06_iid"
 echo "$OUTPUT_DIR/$DATASET_NAME.zip"

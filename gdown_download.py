@@ -23,11 +23,11 @@ def main(argv):
     id = direct_link.split("/d/")[1].split("/")[0]
     url = "https://drive.google.com/uc?id="+id
     gdown.download(url, output=output_dir, use_cookies=False)
-
-    direct_link = "https://drive.google.com/file/d/1mCCeIKNhqgrxjtXy50VswQ29dbZQ96oZ/view?usp=sharing"
-    id = direct_link.split("/d/")[1].split("/")[0]
-    url = "https://drive.google.com/uc?id=" + id
-    gdown.download(url, output=output_dir, use_cookies=False)
+    #
+    # direct_link = "https://drive.google.com/file/d/1mCCeIKNhqgrxjtXy50VswQ29dbZQ96oZ/view?usp=sharing"
+    # id = direct_link.split("/d/")[1].split("/")[0]
+    # url = "https://drive.google.com/uc?id=" + id
+    # gdown.download(url, output=output_dir, use_cookies=False)
 
     url = "https://drive.google.com/drive/folders/1mCTQAh_sVFO3UtYXwlYm8_UGTTEwJ_XE?usp=sharing"
     gdown.download_folder(url, output=output_dir, use_cookies=False)
