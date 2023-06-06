@@ -50,19 +50,19 @@ def update_config(opts):
         global_config.batch_size = network_config["batch_size"][0]
         global_config.load_size = network_config["load_size"][0]
         global_config.disable_progress_bar = True
-        global_config.path = "/scratch3/neil.delgallego/SynthV3_Raw/{dataset_version}/sequence.0/"
+        global_config.path = "/scratch3/neil.delgallego/SynthV3_Raw/{dataset_version}/"
         print("Using COARE configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif(global_config.server_config == 1): #CCS Cloud
         global_config.general_config["num_workers"] = 12
-        global_config.path = "/home/jupyter-neil.delgallego/SynthV3_Raw/{dataset_version}/sequence.0/"
+        global_config.path = "/home/jupyter-neil.delgallego/SynthV3_Raw/{dataset_version}/"
         print("Using CCS configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif(global_config.server_config == 2): #RTX 2080Ti
         global_config.general_config["num_workers"] = 6
         global_config.batch_size = network_config["batch_size"][2]
         global_config.load_size = network_config["load_size"][2]
-        global_config.path = "C:/Datasets/SynthV3_Raw/{dataset_version}/sequence.0/"
+        global_config.path = "C:/Datasets/SynthV3_Raw/{dataset_version}/"
         print("Using RTX 2080Ti configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif(global_config.server_config == 3): #RTX 3090 PC
@@ -76,8 +76,16 @@ def update_config(opts):
         global_config.general_config["num_workers"] = 4
         global_config.batch_size = network_config["batch_size"][2]
         global_config.load_size = network_config["load_size"][2]
-        global_config.path = "/home/neildelgallego/SynthV3_Raw/{dataset_version}/sequence.0/"
+        global_config.path = "/home/neildelgallego/SynthV3_Raw/{dataset_version}/"
         print("Using TITAN RTX 2080Ti configuration. Workers: ", global_config.general_config["num_workers"])
+
+    else:  # COARE A-100
+        global_config.general_config["num_workers"] = 6
+        global_config.batch_size = network_config["batch_size"][1]
+        global_config.load_size = network_config["load_size"][1]
+        global_config.disable_progress_bar = True
+        global_config.path = "/scratch3/neil.delgallego/SynthV3_Raw/{dataset_version}/"
+        print("Using COARE configuration. Workers: ", global_config.general_config["num_workers"])
 
     global_config.path = global_config.path.format(dataset_version=network_config["dataset_version"])
     global_config.depth_path = global_config.path + "depth/*.png"
@@ -130,9 +138,10 @@ def main(argv):
     plot_utils.VisdomReporter.initialize()
 
     train_loader, train_count = dataset_loader.load_train_dataset(rgb_path, exr_path)
+    test_loader, _ = dataset_loader.load_test_dataset(rgb_path, exr_path)
     kitti_rgb_path = "X:/KITTI Depth Test/val_selection_cropped/image/*.png"
     kitti_depth_path = "X:/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
-    test_loader, test_count = dataset_loader.load_kitti_test_dataset(kitti_rgb_path, kitti_depth_path)
+    test_loader_kitti, _ = dataset_loader.load_kitti_test_dataset(kitti_rgb_path, kitti_depth_path)
     dt = depth_trainer.DepthTrainer(device)
 
     iteration = 0
@@ -149,7 +158,7 @@ def main(argv):
     pbar.update(current_progress)
 
     for epoch in range(start_epoch, network_config["max_epochs"]):
-        for i, (train_data, test_data) in enumerate(zip(train_loader, test_loader)):
+        for i, (train_data, test_data) in enumerate(zip(train_loader, test_loader_kitti)):
             rgb_batch, depth_batch = train_data
             rgb_batch = rgb_batch.to(device)
             depth_batch = depth_batch.to(device)
@@ -175,8 +184,10 @@ def main(argv):
                     rgb_batch = rgb_batch.to(device)
                     depth_batch = depth_batch.to(device)
                     input_map = {"rgb": rgb_batch, "depth": depth_batch}
-
                     dt.visdom_visualize(input_map, "Test")
+
+                    input_map = {"rgb": rgb_unseen, "depth": depth_unseen}
+                    dt.visdom_visualize(input_map, "KITTI Test")
 
         dt.save_states(epoch, iteration, True)
 

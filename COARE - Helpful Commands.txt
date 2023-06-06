@@ -27,7 +27,7 @@ sbatch -w saliksik-cpu-23 visdom_run.slurm
 sbatch -w saliksik-cpu-23 --dependency=afterany:335892 visdom_run.slurm
 sbatch --dependency=afterany:448375 script_debug.slurm "depth_v01.15" 1
 
-sbatch script_debug.slurm "depth_v01.15" 1
+sbatch script_debug.slurm "depth_v01.01_iid" 5
 sbatch slurm_download.sh
 sbatch script_gpu_1.slurm "depth_v01.16" 18
 sbatch script_gpu_2.slurm "depth_v01.16" 19

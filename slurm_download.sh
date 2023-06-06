@@ -54,15 +54,15 @@ else
   OUTPUT_DIR="/home/jupyter-neil.delgallego/SynthV3_Raw/"
 fi
 
-DATASET_NAME="v02_fcity"
+DATASET_NAME="KITTI Depth Test"
 echo "$OUTPUT_DIR/$DATASET_NAME.zip"
 unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
-DATASET_NAME="v03_fcity"
+DATASET_NAME="v05_iid"
 echo "$OUTPUT_DIR/$DATASET_NAME.zip"
 unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
-DATASET_NAME="v04_fcity"
+DATASET_NAME="v06_iid_base/v06_iid"
 echo "$OUTPUT_DIR/$DATASET_NAME.zip"
 unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 

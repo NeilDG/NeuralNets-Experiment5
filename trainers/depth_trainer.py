@@ -262,6 +262,10 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
                 target_unseen = input_map["depth_unseen"]
 
                 #check and save best state
+                # For KITTI, perform masking to occlude blank pixels
+                depth_mask = torch.isfinite(target_unseen) & (target_unseen > 0.0)
+                rgb2target_unseen = torch.masked_select(rgb2target_unseen, depth_mask)
+                target_unseen = torch.masked_select(target_unseen, depth_mask)
                 self.try_save_best_state(rgb2target_unseen, target_unseen, epoch, iteration)
 
                 # plot train-test loss
