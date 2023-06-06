@@ -130,6 +130,7 @@ dmypy.json
 *.pt
 
 checkpoint/*.pt
+checkpoint/best/
 checkpoint/*.pt.checkpt
 checkpoint/*.pth.checkpt
 checkpoint/*.pth

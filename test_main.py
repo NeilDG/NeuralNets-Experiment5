@@ -58,7 +58,7 @@ def update_config(opts):
         print("Using RTX 3090 configuration. Workers: ", global_config.general_config["num_workers"])
 
     global_config.path = global_config.path.format(dataset_version=network_config["dataset_version"])
-    global_config.exr_path = global_config.path + "*.exr"
+    global_config.depth_path = global_config.path + "*.exr"
     global_config.rgb_path = global_config.path + "*.camera.png"
 
 
@@ -91,7 +91,7 @@ def main(argv):
     print(general_config)
 
     rgb_path = global_config.rgb_path
-    exr_path = global_config.exr_path
+    exr_path = global_config.depth_path
 
     print("Dataset path: ", global_config.path)
 

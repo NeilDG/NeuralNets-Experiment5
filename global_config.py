@@ -28,7 +28,7 @@ load_size = -1
 img_to_load = -1
 
 path = ""
-exr_path = ""
+depth_path = ""
 rgb_path = ""
 
 a_path = ""
