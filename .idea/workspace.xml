@@ -7,7 +7,6 @@
     <list default="true" id="3b26d531-d5e4-4eb2-b3b5-b1380f2b223c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/COARE - Helpful Commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/COARE - Helpful Commands.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gdown_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/gdown_download.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/slurm_download.sh" beforeDir="false" afterPath="$PROJECT_DIR$/slurm_download.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,20 +25,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "X:/GithubProjects/Synth-3DLocalization",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;X:/GithubProjects/Synth-3DLocalization&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="X:\GithubProjects\Synth-3DLocalization" />
@@ -87,7 +86,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686027695909</updated>
-      <workItem from="1686027697416" duration="4220000" />
+      <workItem from="1686027697416" duration="4512000" />
+      <workItem from="1686032325480" duration="10000" />
+      <workItem from="1686103858396" duration="106000" />
     </task>
     <servers />
   </component>
