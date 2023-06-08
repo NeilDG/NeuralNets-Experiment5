@@ -4,7 +4,7 @@
 #SBATCH --qos=84c-1d_serial
 #SBATCH --cpus-per-task=2
 #SBATCH --ntasks=1
-#SBATCH --output=script_download.out
+#SBATCH --output=script_download_2.out
 #SBATCH --mail-user=neil.delgallego@dlsu.edu.ph
 #SBATCH --mail-type=END
 
