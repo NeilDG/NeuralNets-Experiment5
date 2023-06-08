@@ -2,7 +2,7 @@ import kornia.losses
 
 from config.network_config import ConfigHolder
 from losses import depth_losses
-from trainers import abstract_iid_trainer
+from trainers import abstract_iid_trainer, best_tracker
 import global_config
 import torch
 import torch.cuda.amp as amp
@@ -44,9 +44,6 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
         self.load_size = global_config.load_size
         self.batch_size = global_config.batch_size
 
-        self.stopper_method = early_stopper.EarlyStopper(network_config["min_epochs"], early_stopper.EarlyStopperMethod.L1_TYPE, 1000)
-        self.stop_result = False
-
         self.initialize_dict()
         network_creator = abstract_iid_trainer.NetworkCreator(self.gpu_device)
         self.G_depth, self.D_depth = network_creator.initialize_depth_network()
@@ -57,8 +54,13 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
         self.schedulerD = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizerD, patience=1000000 / self.batch_size, threshold=0.00005)
 
         self.NETWORK_VERSION = ConfigHolder.getInstance().get_version_name()
-        self.NETWORK_CHECKPATH = 'checkpoint/' + self.NETWORK_VERSION + '.pt'
+        self.NETWORK_CHECKPATH = 'checkpoint/' + self.NETWORK_VERSION + '.pth'
         self.load_saved_state()
+
+        self.BEST_NETWORK_SAVE_PATH = "./checkpoint/best/"
+        network_file_name = self.BEST_NETWORK_SAVE_PATH + self.NETWORK_VERSION + "_best" + ".pth"
+        self.best_tracker = best_tracker.BestTracker(early_stopper.EarlyStopperMethod.L1_TYPE)
+        self.best_tracker.load_best_state(network_file_name)
 
     def adversarial_loss(self, pred, target):
         if (self.use_bce == 0):
@@ -258,11 +260,13 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
                 # perform validation test and early stopping
                 rgb2target_unseen = self.test_unseen(input_map)
                 target_unseen = input_map["depth_unseen"]
-                self.stopper_method.register_metric(rgb2target_unseen, target_unseen, epoch)
-                self.stop_result = self.stopper_method.test(epoch)
 
-                if (self.stopper_method.has_reset()):
-                    self.save_states(epoch, iteration, False)
+                #check and save best state
+                # For KITTI, perform masking to occlude blank pixels
+                depth_mask = torch.isfinite(target_unseen) & (target_unseen > 0.0)
+                rgb2target_unseen = torch.masked_select(rgb2target_unseen, depth_mask)
+                target_unseen = torch.masked_select(target_unseen, depth_mask)
+                self.try_save_best_state(rgb2target_unseen, target_unseen, epoch, iteration)
 
                 # plot train-test loss
                 rgb2target_test = self.test(input_map)
@@ -307,7 +311,7 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
             self.visdom_reporter.plot_image(target_tensor, str(label) + " Depth images - " + self.NETWORK_VERSION + str(self.iteration))
 
     def save_states(self, epoch, iteration, is_temp:bool):
-        save_dict = {'epoch': epoch, 'iteration': iteration, global_config.LAST_METRIC_KEY: self.stopper_method.get_last_metric()}
+        save_dict = {'epoch': epoch, 'iteration': iteration}
         netGNS_state_dict = self.G_depth.state_dict()
         netDNS_state_dict = self.D_depth.state_dict()
 
@@ -327,7 +331,7 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
         except:
             # check if a .checkpt is available, load it
             try:
-                checkpt_name = 'checkpoint/' + self.NETWORK_VERSION + ".pt.checkpt"
+                checkpt_name = 'checkpoint/' + self.NETWORK_VERSION + ".pth.checkpt"
                 checkpoint = torch.load(checkpt_name, map_location=self.gpu_device)
             except:
                 checkpoint = None
@@ -335,8 +339,40 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
         if(checkpoint != None):
             global_config.general_config["current_epoch"] = checkpoint["epoch"]
-            self.stopper_method.update_last_metric(checkpoint[global_config.LAST_METRIC_KEY])
             self.G_depth.load_state_dict(checkpoint[global_config.GENERATOR_KEY + "Z"])
             self.D_depth.load_state_dict(checkpoint[global_config.DISCRIMINATOR_KEY + "Z"])
 
             print("Loaded depth network: ", self.NETWORK_CHECKPATH, "Epoch: ", global_config.general_config["current_epoch"])
+
+    def try_save_best_state(self, input, target, epoch, iteration):
+        best_achieved = self.best_tracker.test(input, target)
+        best_metric = self.best_tracker.get_best_metric()
+        if(best_achieved):
+            network_file_name = self.BEST_NETWORK_SAVE_PATH + self.NETWORK_VERSION + "_best" + ".pth"
+            save_dict = {'epoch': epoch, 'iteration': iteration, 'best_metric' : best_metric}
+            netGNS_state_dict = self.G_depth.state_dict()
+            netDNS_state_dict = self.D_depth.state_dict()
+
+            save_dict[global_config.GENERATOR_KEY] = netGNS_state_dict
+            save_dict[global_config.DISCRIMINATOR_KEY] = netDNS_state_dict
+
+            torch.save(save_dict, network_file_name)
+            print("Saved best model state. Epoch: %d. Name: %s. Best metric: %f" % (epoch, network_file_name, best_metric))
+
+    def load_best_state(self):
+        network_file_name = self.BEST_NETWORK_SAVE_PATH + self.NETWORK_VERSION + "_best" + ".pth"
+        try:
+            checkpoint = torch.load(network_file_name, map_location=self.gpu_device)
+            self.best_tracker = best_tracker.BestTracker(early_stopper.EarlyStopperMethod.L1_TYPE)
+            self.best_tracker.load_best_state(network_file_name)
+        except:
+            checkpoint = None
+            print("No best checkpoint found. ", network_file_name)
+
+        if (checkpoint != None):
+            global_config.last_epoch = checkpoint["epoch"]
+            self.G_depth.load_state_dict(checkpoint[global_config.GENERATOR_KEY])
+            self.D_depth.load_state_dict(checkpoint[global_config.DISCRIMINATOR_KEY])
+
+            print("Loaded best depth network: ", self.NETWORK_CHECKPATH, "Epoch: ", checkpoint["epoch"],
+                  " Best metric: ", self.best_tracker.get_best_metric())

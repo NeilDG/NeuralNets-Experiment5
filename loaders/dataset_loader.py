@@ -59,7 +59,7 @@ def load_test_dataset(rgb_path, exr_path):
     data_loader = torch.utils.data.DataLoader(
         image_datasets.DepthDataset(img_length, rgb_list, exr_list, 2),
         batch_size=general_config["test_size"],
-        num_workers=2,
+        num_workers=1,
         shuffle=False
     )
 
@@ -138,7 +138,7 @@ def load_kitti_test_dataset(rgb_path, depth_path):
     data_loader = torch.utils.data.DataLoader(
         image_datasets.KittiDepthDataset(img_length, rgb_list, depth_list),
         batch_size=general_config["test_size"],
-        num_workers=2,
+        num_workers=1,
         shuffle=False
     )
 

@@ -130,9 +130,11 @@ dmypy.json
 *.pt
 
 checkpoint/*.pt
+checkpoint/best/
 checkpoint/*.pt.checkpt
 checkpoint/*.pth.checkpt
 checkpoint/*.pth
 iiw_temp/
 comparison/
 reports/
+.idea/workspace.xml

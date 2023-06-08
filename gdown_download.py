@@ -18,23 +18,25 @@ def main(argv):
     else:
         output_dir = "/home/jupyter-neil.delgallego/SynthV3_Raw/"
 
-    # z00
-    direct_link = "https://drive.google.com/file/d/1lIInRroRBF5YrbUrQNnb-c76Gb4cEsMX/view?usp=share_link"
-    id = direct_link.split("/d/")[1].split("/")[0]
-    url = "https://drive.google.com/uc?id="+id
-    gdown.download(url, output=output_dir, use_cookies=False)
+    # KITTI Depth
+    # direct_link = "https://drive.google.com/file/d/1mGXYC0qG2maqG8QcHKqoQwjzrkkRVKwq/view?usp=sharing"
+    # id = direct_link.split("/d/")[1].split("/")[0]
+    # url = "https://drive.google.com/uc?id="+id
+    # gdown.download(url, output=output_dir, use_cookies=False)
+    #
+    # direct_link = "https://drive.google.com/file/d/1mCCeIKNhqgrxjtXy50VswQ29dbZQ96oZ/view?usp=sharing"
+    # id = direct_link.split("/d/")[1].split("/")[0]
+    # url = "https://drive.google.com/uc?id=" + id
+    # gdown.download(url, output=output_dir, use_cookies=False)
 
-    # z01
-    direct_link = "https://drive.google.com/file/d/1lIeg0h4z_KjcmFQm5RO2HtB627QxNXZP/view?usp=share_link"
+    direct_link = "https://drive.google.com/file/d/1mNTDvIx3TNQYCdwIX1BU0b4tniX_mV6d/view?usp=sharing"
     id = direct_link.split("/d/")[1].split("/")[0]
     url = "https://drive.google.com/uc?id=" + id
     gdown.download(url, output=output_dir, use_cookies=False)
 
-    # z02
-    direct_link = "https://drive.google.com/file/d/1lID0duuFtLfE5rIHwJpAv7-am-UwW5Nq/view?usp=share_link"
-    id = direct_link.split("/d/")[1].split("/")[0]
-    url = "https://drive.google.com/uc?id=" + id
-    gdown.download(url, output=output_dir, use_cookies=False)
+    #download folder template
+    # url = ""
+    # gdown.download_folder(url, output=output_dir, use_cookies=False)
 
 if __name__ == "__main__":
     main(sys.argv)

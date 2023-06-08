@@ -4,7 +4,7 @@
 #SBATCH --qos=84c-1d_serial
 #SBATCH --cpus-per-task=2
 #SBATCH --ntasks=1
-#SBATCH --output=script_download.out
+#SBATCH --output=script_download_2.out
 #SBATCH --mail-user=neil.delgallego@dlsu.edu.ph
 #SBATCH --mail-type=END
 
@@ -30,15 +30,15 @@ source activate NeilGAN_V2
 #pip install --upgrade --no-cache-dir gdown
 #pip install PyYAML
 
-if [ $SERVER_CONFIG == 0 ]
-then
-  srun python "gdown_download.py" --server_config=$SERVER_CONFIG
-elif [ $SERVER_CONFIG == 5 ]
-then
-  python3 "gdown_download.py" --server_config=$SERVER_CONFIG
-else
-  python "gdown_download.py" --server_config=$SERVER_CONFIG
-fi
+#if [ $SERVER_CONFIG == 0 ]
+#then
+#  srun python "gdown_download.py" --server_config=$SERVER_CONFIG
+#elif [ $SERVER_CONFIG == 5 ]
+#then
+#  python3 "gdown_download.py" --server_config=$SERVER_CONFIG
+#else
+#  python "gdown_download.py" --server_config=$SERVER_CONFIG
+#fi
 
 
 if [ $SERVER_CONFIG == 0 ]
@@ -54,15 +54,15 @@ else
   OUTPUT_DIR="/home/jupyter-neil.delgallego/SynthV3_Raw/"
 fi
 
-DATASET_NAME="v02_fcity"
-echo "$OUTPUT_DIR/$DATASET_NAME.zip"
-unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
+#DATASET_NAME="KITTI Depth Test"
+#echo "$OUTPUT_DIR/$DATASET_NAME.zip"
+#unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
+#
+#DATASET_NAME="v05_iid"
+#echo "$OUTPUT_DIR/$DATASET_NAME.zip"
+#unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
-DATASET_NAME="v03_fcity"
-echo "$OUTPUT_DIR/$DATASET_NAME.zip"
-unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
-
-DATASET_NAME="v04_fcity"
+DATASET_NAME="v07_iid"
 echo "$OUTPUT_DIR/$DATASET_NAME.zip"
 unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
