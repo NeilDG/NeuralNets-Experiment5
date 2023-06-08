@@ -62,10 +62,9 @@ fi
 #echo "$OUTPUT_DIR/$DATASET_NAME.zip"
 #unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
-DATASET_NAME="v07_iid_base/v07_iid"
+DATASET_NAME="v07_iid"
 echo "$OUTPUT_DIR/$DATASET_NAME.zip"
-zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
-unzip "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
+unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
 #
 #zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3b26d531-d5e4-4eb2-b3b5-b1380f2b223c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gdown_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/gdown_download.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/slurm_download.sh" beforeDir="false" afterPath="$PROJECT_DIR$/slurm_download.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +90,8 @@
       <workItem from="1686032325480" duration="10000" />
       <workItem from="1686103858396" duration="405000" />
       <workItem from="1686118507278" duration="803000" />
-      <workItem from="1686135742187" duration="10000" />
+      <workItem from="1686135742187" duration="757000" />
+      <workItem from="1686194148204" duration="1396000" />
     </task>
     <servers />
   </component>

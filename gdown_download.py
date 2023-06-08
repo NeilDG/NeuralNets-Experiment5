@@ -29,9 +29,14 @@ def main(argv):
     # url = "https://drive.google.com/uc?id=" + id
     # gdown.download(url, output=output_dir, use_cookies=False)
 
-    #v07
-    url = "https://drive.google.com/drive/folders/1mGu-BYkBTTZKx52Es3u8ztgIjA8KiiSU?usp=sharing"
-    gdown.download_folder(url, output=output_dir, use_cookies=False)
+    direct_link = "https://drive.google.com/file/d/1mNTDvIx3TNQYCdwIX1BU0b4tniX_mV6d/view?usp=sharing"
+    id = direct_link.split("/d/")[1].split("/")[0]
+    url = "https://drive.google.com/uc?id=" + id
+    gdown.download(url, output=output_dir, use_cookies=False)
+
+    #download folder template
+    # url = ""
+    # gdown.download_folder(url, output=output_dir, use_cookies=False)
 
 if __name__ == "__main__":
     main(sys.argv)
