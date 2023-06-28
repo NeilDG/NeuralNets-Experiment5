@@ -161,7 +161,7 @@ def main(argv):
     pbar.update(current_progress)
 
     for epoch in range(start_epoch, network_config["max_epochs"]):
-        for i, (train_data, test_data) in enumerate(zip(train_loader, test_loader_kitti)):
+        for i, (train_data, test_data) in enumerate(zip(train_loader, itertools.cycle(test_loader_kitti))):
             rgb_batch, depth_batch = train_data
             rgb_batch = rgb_batch.to(device)
             depth_batch = depth_batch.to(device)
