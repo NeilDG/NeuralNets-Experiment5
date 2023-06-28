@@ -54,7 +54,7 @@ def load_test_dataset(rgb_path, exr_path):
 
     rgb_list, exr_list = zip(*temp_list)
     img_length = len(rgb_list)
-    print("Length of images: %d %d"  % (img_length, len(exr_list)))
+    print("Length of test images: %d %d"  % (img_length, len(exr_list)))
 
     data_loader = torch.utils.data.DataLoader(
         image_datasets.DepthDataset(img_length, rgb_list, exr_list, 2),
@@ -133,7 +133,7 @@ def load_kitti_test_dataset(rgb_path, depth_path):
 
     rgb_list, depth_list = zip(*temp_list)
     img_length = len(rgb_list)
-    print("Length of images: %d %d" % (img_length, len(depth_list)))
+    print("Length of KITTI test images: %d %d" % (img_length, len(depth_list)))
 
     data_loader = torch.utils.data.DataLoader(
         image_datasets.KittiDepthDataset(img_length, rgb_list, depth_list),
