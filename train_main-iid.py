@@ -127,7 +127,8 @@ def main(argv):
     hyperparam_config = ConfigHolder.getInstance().get_hyper_params()
     network_iteration = global_config.general_config["iteration"]
     hyperparams_table = hyperparam_config["hyperparams"][network_iteration]
-    print("Network iteration:", str(network_iteration), ". Hyper parameters: ", hyperparams_table, " Learning rates: ", network_config["g_lr"], network_config["d_lr"])
+    global_config.img_to_load = ConfigHolder.getInstance().get_network_attribute("img_to_load", -1)
+    print("Network iteration:", str(network_iteration), ". Hyper parameters: ", hyperparams_table, " Learning rates: ", network_config["g_lr"], network_config["d_lr"], "Img to load: ", global_config.img_to_load)
 
     rgb_path = global_config.rgb_path
     exr_path = global_config.depth_path
