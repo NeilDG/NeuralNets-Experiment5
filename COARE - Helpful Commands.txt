@@ -7,7 +7,7 @@ cd scratch3/Synth-3D-V01.XX.XX
 cd scratch3/Visdom
 unzip "scratch2/SynthWeather Dataset 10.zip"
 
-git clone -b "workspace/V01.XX.XX" "https://github.com/NeilDG/Synth-3DLocalization.git" "scratch3/Synth-3D-V01.XX.XX"
+git --depth 1 clone -b "workspace/V01.XX.XX" "https://github.com/NeilDG/Synth-3DLocalization.git" "scratch3/Synth-3D-V01.XX.XX"
 rm -rf "/scratch3/neil.delgallego/NeuralNets-GenerativeExperiment-V61.XX.XX-2/"
 rm -rf "/scratch3/neil.delgallego/SynthV3_Raw/"
 rm -rf "/scratch1/scratch2/neil.delgallego/SynthWeather Dataset 10/"
@@ -62,11 +62,10 @@ export XDG_RUNTIME_DIR=/scratch1/scratch2/neil.delgallego/Visdom/
 saliksik.asti.dost.gov.ph:8097
 
 //CCS SERVER-JUPYTERHUB / TITAN Workstation
-git clone -b "workspace/V01.XX.XX" "https://github.com/NeilDG/NeuralNets-Experiment5.git" "NeuralNets-Experiment5-V01.XX.XX"
+git clone --depth 1 -b "workspace/V01.XX.XX" "https://github.com/NeilDG/Synth-3DLocalization.git" "Synth-3D-V01.XX.XX"
 
 git switch "workspace/V01.XX.XX"
-cd NeuralNets-Experiment5-V01.XX.XX
-cd NeuralNets-Experiment4-V01.XX.XX
+cd Synth-3D-V01.XX.XX
 python "ccs1_main.py"
 python "ccs2_main.py"
 python3 "titan1_main.py"

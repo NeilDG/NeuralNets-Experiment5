@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b26d531-d5e4-4eb2-b3b5-b1380f2b223c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test_main-iid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COARE - Helpful Commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/COARE - Helpful Commands.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gdown_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/gdown_download.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rtx3090_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/rtx3090_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/slurm_download.sh" beforeDir="false" afterPath="$PROJECT_DIR$/slurm_download.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/titan2_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/titan2_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_main-iid.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_main-iid.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +96,7 @@
       <workItem from="1686231673004" duration="326000" />
       <workItem from="1687844626121" duration="26000" />
       <workItem from="1687918880140" duration="1808000" />
-      <workItem from="1687920945527" duration="217000" />
+      <workItem from="1687920945527" duration="330000" />
     </task>
     <servers />
   </component>

@@ -24,13 +24,13 @@ def main(argv):
     url = "https://drive.google.com/uc?id="+id
     gdown.download(url, output=output_dir, use_cookies=False)
 
-    # v06_iid_base
-    url = "https://drive.google.com/drive/folders/1mCTQAh_sVFO3UtYXwlYm8_UGTTEwJ_XE?usp=sharing"
-    gdown.download_folder(url, output=output_dir, use_cookies=False)
-
-    # v07_iid_base
-    url = "https://drive.google.com/drive/folders/1mGu-BYkBTTZKx52Es3u8ztgIjA8KiiSU?usp=sharing"
-    gdown.download_folder(url, output=output_dir, use_cookies=False)
+    # # v06_iid_base
+    # url = "https://drive.google.com/drive/folders/1mCTQAh_sVFO3UtYXwlYm8_UGTTEwJ_XE?usp=sharing"
+    # gdown.download_folder(url, output=output_dir, use_cookies=False)
+    #
+    # # v07_iid_base
+    # url = "https://drive.google.com/drive/folders/1mGu-BYkBTTZKx52Es3u8ztgIjA8KiiSU?usp=sharing"
+    # gdown.download_folder(url, output=output_dir, use_cookies=False)
 
     # v08_iid_base
     url = "https://drive.google.com/drive/folders/1mnr806Vw8YqaCKuQGerAboEsz6rO9fgI?usp=sharing"
