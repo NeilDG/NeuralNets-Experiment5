@@ -30,6 +30,8 @@ img_to_load = -1
 path = ""
 depth_path = ""
 rgb_path = ""
+kitti_rgb_path = ""
+kitti_depth_path = ""
 
 a_path = ""
 b_path = ""

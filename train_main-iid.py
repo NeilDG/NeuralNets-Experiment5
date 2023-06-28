@@ -70,6 +70,8 @@ def update_config(opts):
         global_config.batch_size = network_config["batch_size"][0]
         global_config.load_size = network_config["load_size"][0]
         global_config.path = "X:/SynthV3_Raw/{dataset_version}/"
+        global_config.kitti_rgb_path = "X:/KITTI Depth Test/val_selection_cropped/image/*.png"
+        global_config.kitti_depth_path = "X:/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
         print("Using RTX 3090 configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif (global_config.server_config == 4):  # @TITAN1 - 3
@@ -77,6 +79,8 @@ def update_config(opts):
         global_config.batch_size = network_config["batch_size"][2]
         global_config.load_size = network_config["load_size"][2]
         global_config.path = "/home/neildelgallego/SynthV3_Raw/{dataset_version}/"
+        global_config.kitti_rgb_path = "/home/neildelgallego/KITTI Depth Test/val_selection_cropped/image/*.png"
+        global_config.kitti_depth_path = "/home/neildelgallego/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
         print("Using TITAN RTX 2080Ti configuration. Workers: ", global_config.general_config["num_workers"])
 
     else:  # COARE A-100
@@ -140,9 +144,7 @@ def main(argv):
 
     train_loader, train_count = dataset_loader.load_train_dataset(rgb_path, exr_path)
     test_loader, _ = dataset_loader.load_test_dataset(rgb_path, exr_path)
-    kitti_rgb_path = "X:/KITTI Depth Test/val_selection_cropped/image/*.png"
-    kitti_depth_path = "X:/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
-    test_loader_kitti, _ = dataset_loader.load_kitti_test_dataset(kitti_rgb_path, kitti_depth_path)
+    test_loader_kitti, _ = dataset_loader.load_kitti_test_dataset(global_config.kitti_rgb_path, global_config.kitti_depth_path)
     dt = depth_trainer.DepthTrainer(device)
 
     iteration = 0

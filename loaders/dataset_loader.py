@@ -21,14 +21,12 @@ def load_train_dataset(rgb_path, exr_path):
         rgb_list += rgb_list
         exr_list += exr_list
 
-    print("Length of images: %d %d" % (len(rgb_list), len(exr_list)))
-
     temp_list = list(zip(rgb_list, exr_list))
     random.shuffle(temp_list)
 
     rgb_list, exr_list = zip(*temp_list)
     img_length = len(rgb_list)
-    print("Length of images: %d %d"  % (img_length, len(exr_list)))
+    print("Length of train images: %d %d"  % (img_length, len(exr_list)))
 
     data_loader = torch.utils.data.DataLoader(
         image_datasets.DepthDataset(img_length, rgb_list, exr_list, 1),
