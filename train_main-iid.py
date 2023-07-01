@@ -70,6 +70,8 @@ def update_config(opts):
         global_config.batch_size = network_config["batch_size"][0]
         global_config.load_size = network_config["load_size"][0]
         global_config.path = "X:/SynthV3_Raw/{dataset_version}/"
+        global_config.kitti_rgb_path = "X:/KITTI Depth Test/val_selection_cropped/image/*.png"
+        global_config.kitti_depth_path = "X:/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
         print("Using RTX 3090 configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif (global_config.server_config == 4):  # @TITAN1 - 3
@@ -77,6 +79,8 @@ def update_config(opts):
         global_config.batch_size = network_config["batch_size"][2]
         global_config.load_size = network_config["load_size"][2]
         global_config.path = "/home/neildelgallego/SynthV3_Raw/{dataset_version}/"
+        global_config.kitti_rgb_path = "/home/neildelgallego/KITTI Depth Test/val_selection_cropped/image/*.png"
+        global_config.kitti_depth_path = "/home/neildelgallego/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
         print("Using TITAN RTX 2080Ti configuration. Workers: ", global_config.general_config["num_workers"])
 
     else:  # COARE A-100
@@ -127,7 +131,8 @@ def main(argv):
     hyperparam_config = ConfigHolder.getInstance().get_hyper_params()
     network_iteration = global_config.general_config["iteration"]
     hyperparams_table = hyperparam_config["hyperparams"][network_iteration]
-    print("Network iteration:", str(network_iteration), ". Hyper parameters: ", hyperparams_table, " Learning rates: ", network_config["g_lr"], network_config["d_lr"])
+    global_config.img_to_load = ConfigHolder.getInstance().get_network_attribute("img_to_load", -1)
+    print("Network iteration:", str(network_iteration), ". Hyper parameters: ", hyperparams_table, " Learning rates: ", network_config["g_lr"], network_config["d_lr"], "Img to load: ", global_config.img_to_load)
 
     rgb_path = global_config.rgb_path
     exr_path = global_config.depth_path
@@ -139,9 +144,7 @@ def main(argv):
 
     train_loader, train_count = dataset_loader.load_train_dataset(rgb_path, exr_path)
     test_loader, _ = dataset_loader.load_test_dataset(rgb_path, exr_path)
-    kitti_rgb_path = "X:/KITTI Depth Test/val_selection_cropped/image/*.png"
-    kitti_depth_path = "X:/KITTI Depth Test/val_selection_cropped/groundtruth_depth/*.png"
-    test_loader_kitti, _ = dataset_loader.load_kitti_test_dataset(kitti_rgb_path, kitti_depth_path)
+    test_loader_kitti, _ = dataset_loader.load_kitti_test_dataset(global_config.kitti_rgb_path, global_config.kitti_depth_path)
     dt = depth_trainer.DepthTrainer(device)
 
     iteration = 0
@@ -158,7 +161,7 @@ def main(argv):
     pbar.update(current_progress)
 
     for epoch in range(start_epoch, network_config["max_epochs"]):
-        for i, (train_data, test_data) in enumerate(zip(train_loader, test_loader_kitti)):
+        for i, (train_data, test_data) in enumerate(zip(train_loader, itertools.cycle(test_loader_kitti))):
             rgb_batch, depth_batch = train_data
             rgb_batch = rgb_batch.to(device)
             depth_batch = depth_batch.to(device)

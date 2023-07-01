@@ -14,11 +14,13 @@ def train_depth():
     #           "--iteration=1")
 
     os.system("python \"train_main-iid.py\" --server_config=3 --img_to_load=-1 "
-              "--plot_enabled=1 --save_every_iter=50 --network_version=\"depth_v01.02_iid\" "
+              "--plot_enabled=1 --save_every_iter=50 --network_version=\"depth_v01.03_iid\" "
               "--iteration=5")
 
 def test_depth():
-    os.system("python \"test_main.py\" --server_config=3 --img_to_load=1000 --plot_enabled=1 --network_version=\"depth_v01.18\" "
+    # os.system("python \"test_main.py\" --server_config=3 --img_to_load=1000 --plot_enabled=1 --network_version=\"depth_v01.18\" "
+    #           "--iteration=1")
+    os.system("python \"test_main-iid.py\" --server_config=3 --img_to_load=1000 --plot_enabled=1 --network_version=\"depth_v01.02_iid\" "
               "--iteration=1")
 
 def train_img2img():

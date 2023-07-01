@@ -17,5 +17,6 @@ g_lr: 0.0002
 d_lr: 0.0005
 max_epochs: 150
 
-dataset_version: "v06_iid"
+dataset_version: "v07_iid"
+img_to_load: 50000
 dataset_repeats: 5
