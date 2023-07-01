@@ -320,10 +320,10 @@ class DepthTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
         if (is_temp):
             torch.save(save_dict, self.NETWORK_CHECKPATH + ".checkpt")
-            print("Saved checkpoint state: %s Epoch: %d" % (len(save_dict), (epoch + 1)))
+            print("Saved checkpoint state: %s Epoch: %d" % (len(self.NETWORK_CHECKPATH), (epoch + 1)))
         else:
             torch.save(save_dict, self.NETWORK_CHECKPATH)
-            print("Saved stable model state: %s Epoch: %d" % (len(save_dict), (epoch + 1)))
+            print("Saved stable model state: %s Epoch: %d" % (len(self.NETWORK_CHECKPATH), (epoch + 1)))
 
     def load_saved_state(self):
         try:
