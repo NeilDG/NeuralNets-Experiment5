@@ -112,17 +112,19 @@ def main(argv):
     pbar.update(current_progress)
 
     with torch.no_grad():
-        for i, (rgb_batch, depth_batch) in enumerate(synth_loader, 0):
+        for i, (file_names, rgb_batch, depth_batch) in enumerate(synth_loader, 0):
             rgb_batch = rgb_batch.to(device)
             depth_batch = depth_batch.to(device)
 
             input_map = {"rgb" : rgb_batch, "depth" : depth_batch}
             dt.measure_and_store(input_map)
+            dt.save_image_set(file_names, input_map, "rgb", "depth", "FCity")
+
             pbar.update(1)
 
         pbar.close()
 
-        rgb_batch, depth_batch = next(iter(synth_loader)) #visualize one batch
+        _, rgb_batch, depth_batch = next(iter(synth_loader)) #visualize one batch
         rgb_batch = rgb_batch.to(device)
         depth_batch = depth_batch.to(device)
         input_map = {"rgb": rgb_batch, "depth": depth_batch}
@@ -146,17 +148,18 @@ def main(argv):
         pbar = tqdm(total=needed_progress, disable=global_config.disable_progress_bar)
         pbar.update(current_progress)
 
-        for i, (rgb_batch, depth_batch) in enumerate(kitti_loader, 0):
+        for i, (file_names, rgb_batch, depth_batch) in enumerate(kitti_loader, 0):
             rgb_batch = rgb_batch.to(device)
             depth_batch = depth_batch.to(device)
 
             input_map = {"rgb": rgb_batch, "depth": depth_batch}
             dt.measure_and_store(input_map)
+            dt.save_image_set(file_names, input_map, "rgb", "depth", "KITTI")
             pbar.update(1)
 
         pbar.close()
 
-        rgb_batch, depth_batch = next(iter(kitti_loader))  # visualize one batch
+        _, rgb_batch, depth_batch = next(iter(kitti_loader))  # visualize one batch
         rgb_batch = rgb_batch.to(device)
         depth_batch = depth_batch.to(device)
         input_map = {"rgb": rgb_batch, "depth": depth_batch}

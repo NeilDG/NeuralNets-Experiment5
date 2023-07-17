@@ -1,4 +1,8 @@
+from pathlib import Path
+
+import cv2
 import kornia.metrics.psnr
+import torchvision
 
 from config import network_config
 from config.network_config import ConfigHolder
@@ -67,6 +71,46 @@ class DepthTester():
     def visualize_results(self, input_map, dataset_title):
         version_name = network_config.ConfigHolder.getInstance().get_version_name()
         self.dt.visdom_visualize(input_map, "Test - " + version_name + " " + dataset_title)
+
+    def save_image_set(self, file_names, input_map, a_key, b_key, dataset_title):
+        version_name = network_config.ConfigHolder.getInstance().get_version_name()
+        SAVE_PATH = "./results/" + version_name + "/" + dataset_title + "/"
+        try:
+            path = Path(SAVE_PATH + "/input/")
+            path.mkdir(parents=True)
+
+            path = Path(SAVE_PATH + "/target/")
+            path.mkdir(parents=True)
+
+            path = Path(SAVE_PATH + "/target-like/")
+            path.mkdir(parents=True)
+        except OSError as error:
+            pass
+            # print(SAVE_PATH + " already exists. Skipping.", error)
+
+        generated = self.dt.test(input_map)
+        input = input_map[a_key]
+        ground_truth = input_map[b_key]
+
+        generated = (generated - 0.85) * 2.5
+        # ground_truth = kornia.enhance.add_weighted(ground_truth, 0.75, kornia.enhance.equalize(ground_truth), 0.25, 0.0)
+
+        for i in range(0, len(file_names)):
+            img_save_file = SAVE_PATH + "/input/" + file_names[i] + ".png"
+            torchvision.utils.save_image(input[i], img_save_file, normalize=True)
+
+            img_save_file = SAVE_PATH + "/target/" + file_names[i] + ".png"
+            torchvision.utils.save_image(ground_truth[i], img_save_file, normalize=False)
+            ground_truth_img = cv2.imread(img_save_file)
+            ground_truth_img = cv2.cvtColor(ground_truth_img, cv2.COLOR_BGR2GRAY)
+            ground_truth_img = cv2.applyColorMap(ground_truth_img, cv2.COLORMAP_MAGMA)
+            cv2.imwrite(img_save_file, ground_truth_img)
+
+
+            img_save_file = SAVE_PATH + "/target-like/" + file_names[i] + ".png"
+            torchvision.utils.save_image(generated[i], img_save_file, normalize=False)
+
+        # print("Saved batch of images of size " + str(len(file_names)))
 
     def report_metrics(self, dataset_title):
         version_name = network_config.ConfigHolder.getInstance().get_version_name()

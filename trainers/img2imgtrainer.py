@@ -41,6 +41,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
         self.stopper_method = early_stopper.EarlyStopper(network_config["min_epochs"], early_stopper.EarlyStopperMethod.L1_TYPE, 1000)
         self.stop_result = False
+        self.mixed_precision_enabled = config_holder.get_network_attribute("mixed_precision", True)
 
         self.initialize_dict()
         network_creator = abstract_iid_trainer.NetworkCreator(self.gpu_device)
@@ -134,7 +135,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
         accum_batch_size = self.load_size * iteration
 
-        with amp.autocast():
+        with amp.autocast(self.mixed_precision_enabled):
             #discriminator
             self.optimizerD.zero_grad()
             self.D_A.train()
@@ -288,7 +289,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
                 checkpoint = torch.load(checkpt_name, map_location=self.gpu_device)
             except:
                 checkpoint = None
-                print("No existing checkpoint file found. Creating new depth network: ", self.NETWORK_CHECKPATH)
+                print("No existing checkpoint file found. Creating new img2img network: ", self.NETWORK_CHECKPATH)
 
         if(checkpoint != None):
             global_config.general_config["current_epoch"] = checkpoint["epoch"]
@@ -299,7 +300,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
             self.D_A.load_state_dict(checkpoint[global_config.DISCRIMINATOR_KEY + "A"])
             self.D_B.load_state_dict(checkpoint[global_config.DISCRIMINATOR_KEY + "B"])
 
-            print("Loaded style transfer network: ", self.NETWORK_CHECKPATH, "Epoch: ", global_config.general_config["current_epoch"])
+            print("Loaded img2img network: ", self.NETWORK_CHECKPATH, "Epoch: ", global_config.general_config["current_epoch"])
 
 
 
