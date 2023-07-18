@@ -32,8 +32,8 @@ def main(argv):
     # url = "https://drive.google.com/drive/folders/1mGu-BYkBTTZKx52Es3u8ztgIjA8KiiSU?usp=sharing"
     # gdown.download_folder(url, output=output_dir, use_cookies=False)
 
-    # v08_iid_base
-    url = "https://drive.google.com/drive/folders/1mnr806Vw8YqaCKuQGerAboEsz6rO9fgI?usp=sharing"
+    # v09_iid_base
+    url = ""
     gdown.download_folder(url, output=output_dir, use_cookies=False)
 
     #download folder template
