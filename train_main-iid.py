@@ -162,11 +162,11 @@ def main(argv):
 
     for epoch in range(start_epoch, network_config["max_epochs"]):
         for i, (train_data, test_data) in enumerate(zip(train_loader, itertools.cycle(test_loader_kitti))):
-            rgb_batch, depth_batch = train_data
+            _, rgb_batch, depth_batch = train_data
             rgb_batch = rgb_batch.to(device)
             depth_batch = depth_batch.to(device)
 
-            rgb_unseen, depth_unseen = test_data
+            _, rgb_unseen, depth_unseen = test_data
             rgb_unseen = rgb_unseen.to(device)
             depth_unseen = depth_unseen.to(device)
 
@@ -183,7 +183,7 @@ def main(argv):
                     dt.visdom_plot(iteration)
                     dt.visdom_visualize(input_map, "Train")
 
-                    rgb_batch, depth_batch = next(itertools.cycle(test_loader))
+                    _, rgb_batch, depth_batch = next(itertools.cycle(test_loader))
                     rgb_batch = rgb_batch.to(device)
                     depth_batch = depth_batch.to(device)
                     input_map = {"rgb": rgb_batch, "depth": depth_batch}

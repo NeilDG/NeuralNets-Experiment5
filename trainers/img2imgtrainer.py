@@ -41,6 +41,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
         self.stopper_method = early_stopper.EarlyStopper(network_config["min_epochs"], early_stopper.EarlyStopperMethod.L1_TYPE, 1000)
         self.stop_result = False
+        self.mixed_precision_enabled = config_holder.get_network_attribute("mixed_precision", True)
 
         self.initialize_dict()
         network_creator = abstract_iid_trainer.NetworkCreator(self.gpu_device)
@@ -134,7 +135,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
         accum_batch_size = self.load_size * iteration
 
-        with amp.autocast():
+        with amp.autocast(self.mixed_precision_enabled):
             #discriminator
             self.optimizerD.zero_grad()
             self.D_A.train()
@@ -230,6 +231,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
             self.G_A2B.eval()
             self.G_B2A.eval()
+
             img_a2b = self.G_A2B(img_a)
             img_b2a = self.G_B2A(img_b)
             return img_a2b, img_b2a
@@ -246,10 +248,22 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
             if(label == "Train"):
                 img_a = self.transform_op(img_a)
                 img_b = self.transform_op(img_b)
+                input_map["img_a"] = img_a
+                input_map["img_b"] = img_b
 
-            img_a2b, img_b2a = self.test(input_map)
-            img_a2b2a = self.G_B2A(self.G_A2B(img_a))
-            img_b2a2b = self.G_A2B(self.G_B2A(img_b))
+                img_a2b, img_b2a = self.test(input_map)
+                img_a2b2a = self.G_B2A(self.G_A2B(img_a))
+                img_b2a2b = self.G_A2B(self.G_B2A(img_b))
+
+            else: #perform patch extraction for images larger than the network's trained patch size --> to support visual transformer-based models.
+                config_holder = ConfigHolder.getInstance()
+                patch_size = config_holder.get_network_attribute("patch_size", 64)
+                img_a2b = tensor_utils.patched_infer(img_a, self.G_A2B, patch_size)
+                img_b2a = tensor_utils.patched_infer(img_b, self.G_B2A, patch_size)
+
+                img_a2b2a = tensor_utils.patched_infer(img_a2b, self.G_B2A, patch_size)
+                img_b2a2b = tensor_utils.patched_infer(img_b2a, self.G_A2B, patch_size)
+
 
             self.visdom_reporter.plot_image(img_a, str(label) + " Input A Images - " + style_transfer_version + str(self.iteration))
             self.visdom_reporter.plot_image(img_a2b2a, str(label) + " Input A Cycle - " + style_transfer_version + str(self.iteration))
@@ -288,7 +302,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
                 checkpoint = torch.load(checkpt_name, map_location=self.gpu_device)
             except:
                 checkpoint = None
-                print("No existing checkpoint file found. Creating new depth network: ", self.NETWORK_CHECKPATH)
+                print("No existing checkpoint file found. Creating new img2img network: ", self.NETWORK_CHECKPATH)
 
         if(checkpoint != None):
             global_config.general_config["current_epoch"] = checkpoint["epoch"]
@@ -299,7 +313,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
             self.D_A.load_state_dict(checkpoint[global_config.DISCRIMINATOR_KEY + "A"])
             self.D_B.load_state_dict(checkpoint[global_config.DISCRIMINATOR_KEY + "B"])
 
-            print("Loaded style transfer network: ", self.NETWORK_CHECKPATH, "Epoch: ", global_config.general_config["current_epoch"])
+            print("Loaded img2img network: ", self.NETWORK_CHECKPATH, "Epoch: ", global_config.general_config["current_epoch"])
 
 
 

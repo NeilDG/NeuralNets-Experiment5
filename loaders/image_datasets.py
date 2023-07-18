@@ -47,6 +47,8 @@ class DepthDataset(data.Dataset):
 
     def __getitem__(self, idx):
         try:
+            file_name = self.rgb_list[idx % len(self.rgb_list)].split("\\")[-1].split(".")[0]
+
             state = torch.get_rng_state()
             rgb_img = cv2.imread(self.rgb_list[idx])
             rgb_img = cv2.cvtColor(rgb_img, cv2.COLOR_BGR2RGB)
@@ -80,10 +82,11 @@ class DepthDataset(data.Dataset):
             print("Failed to load: ", self.rgb_list[idx], self.exr_list[idx])
             print("ERROR: ", e)
 
+            file_name = None
             rgb_img = None
             depth_img = None
 
-        return rgb_img, depth_img
+        return file_name, rgb_img, depth_img
 
     def __len__(self):
         return self.img_length
@@ -108,6 +111,7 @@ class KittiDepthDataset(data.Dataset):
         ])
 
     def __getitem__(self, idx):
+        file_name = self.rgb_list[idx % len(self.rgb_list)].split("\\")[-1].split(".")[0]
         rgb_img = cv2.imread(self.rgb_list[idx])
         rgb_img = cv2.cvtColor(rgb_img, cv2.COLOR_BGR2RGB)
         rgb_img = self.initial_op(rgb_img)
@@ -120,7 +124,7 @@ class KittiDepthDataset(data.Dataset):
         # rgb_img = self.norm_op(rgb_img)
         # depth_img = self.norm_op(depth_img)
 
-        return rgb_img, depth_img
+        return file_name, rgb_img, depth_img
 
     def __len__(self):
         return self.img_length

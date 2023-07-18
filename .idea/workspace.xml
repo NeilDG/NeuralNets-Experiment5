@@ -6,14 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="3b26d531-d5e4-4eb2-b3b5-b1380f2b223c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COARE - Helpful Commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/COARE - Helpful Commands.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gdown_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/gdown_download.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slurm_download.sh" beforeDir="false" afterPath="$PROJECT_DIR$/slurm_download.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rtx3090_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/rtx3090_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_img2img_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_img2img_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainers/img2imgtrainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainers/img2imgtrainer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/tensor_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tensor_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,7 +58,7 @@
       <recent name="X:\GithubProjects\Synth-3DLocalization\hyperparam_tables\iid" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.rtx3090_main">
     <configuration name="rtx3090_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Synth-3DLocalization" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,9 +81,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="titan2_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Synth-3DLocalization" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/titan2_main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.rtx3090_main" />
+        <item itemvalue="Python.titan2_main" />
       </list>
     </recent_temporary>
   </component>
@@ -96,7 +127,19 @@
       <workItem from="1686231673004" duration="326000" />
       <workItem from="1687844626121" duration="26000" />
       <workItem from="1687918880140" duration="1808000" />
-      <workItem from="1687920945527" duration="330000" />
+      <workItem from="1687920945527" duration="871000" />
+      <workItem from="1687921846986" duration="61000" />
+      <workItem from="1687922505593" duration="826000" />
+      <workItem from="1688007929042" duration="1336000" />
+      <workItem from="1688178798493" duration="1220000" />
+      <workItem from="1688184877874" duration="261000" />
+      <workItem from="1688648661554" duration="601000" />
+      <workItem from="1688649273517" duration="6254000" />
+      <workItem from="1688698476105" duration="657000" />
+      <workItem from="1689424346288" duration="2248000" />
+      <workItem from="1689435950884" duration="608000" />
+      <workItem from="1689561737118" duration="2379000" />
+      <workItem from="1689584391363" duration="17095000" />
     </task>
     <servers />
   </component>
@@ -104,6 +147,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Synth_3DLocalization$rtx3090_main.coverage" NAME="rtx3090_main Coverage Results" MODIFIED="1687920628629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Synth_3DLocalization$rtx3090_main.coverage" NAME="rtx3090_main Coverage Results" MODIFIED="1689661090426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Synth_3DLocalization$titan2_main.coverage" NAME="titan2_main Coverage Results" MODIFIED="1688648695908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

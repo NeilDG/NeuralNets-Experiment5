@@ -21,8 +21,8 @@ def train_depth():
               "--iteration=5")
 
 def test_depth():
-    os.system("python3 \"test_main.py\" --server_config=4 --img_to_load=-1 --plot_enabled=1 --network_version=\"depth_v01.04\" "
-              "--iteration=12")
+    os.system("python3 \"test_main.py\" --server_config=4 --img_to_load=-1 --plot_enabled=1 --network_version=\"depth_v01.03\" "
+              "--iteration=1")
 
 def train_img2img():
     os.system("python3 \"train_img2img_main.py\" --server_config=4 --img_to_load=-1 "
@@ -39,8 +39,8 @@ def test_img2img():
               "--iteration=1")
 
 def main():
-    train_depth()
-    # test_depth()
+    # train_depth()
+    test_depth()
     # train_img2img()
     # os.system("shutdown /s /t 1")
 

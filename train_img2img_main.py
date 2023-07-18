@@ -42,26 +42,26 @@ def update_config(opts):
     if(global_config.server_config == 0): #COARE
         global_config.general_config["num_workers"] = 6
         global_config.disable_progress_bar = True
-        global_config.path = "/scratch1/scratch2/neil.delgallego/SynthV3_Raw/{dataset_version}/sequence.0/"
+        global_config.path = "/scratch1/scratch2/neil.delgallego/SynthV3_Raw/{dataset_version}/*.png"
         print("Using COARE configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif(global_config.server_config == 1): #CCS Cloud
         global_config.general_config["num_workers"] = 12
-        global_config.path = "/home/jupyter-neil.delgallego/SynthV3_Raw/{dataset_version}/sequence.0/"
+        global_config.path = "/home/jupyter-neil.delgallego/SynthV3_Raw/{dataset_version}/*.png"
         print("Using CCS configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif(global_config.server_config == 2): #RTX 2080Ti
         global_config.general_config["num_workers"] = 6
-        global_config.a_path = "C:/Datasets/Places Dataset/*.jpg"
-        global_config.b_path = "C:/Datasets/SynthV3_Raw/{dataset_version}/sequence.0/*.camera.png"
+        global_config.a_path = "C:/Datasets/{dataset_version}/*.jpg"
+        global_config.b_path = "C:/Datasets/SynthV3_Raw/{dataset_version}/*.png"
         global_config.batch_size = network_config["batch_size"][2]
         global_config.load_size = network_config["load_size"][2]
         print("Using RTX 2080Ti configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif(global_config.server_config == 3): #RTX 3090 PC
         global_config.general_config["num_workers"] = 12
-        global_config.a_path = "X:/Places Dataset/*.jpg"
-        global_config.b_path = "X:/SynthV3_Raw/{dataset_version}/sequence.0/*.camera.png"
+        global_config.a_path = "X:/{dataset_version}/*.jpg"
+        global_config.b_path = "X:/SynthV3_Raw/{dataset_version}/*.png"
         global_config.batch_size = network_config["batch_size"][0]
         global_config.load_size = network_config["load_size"][0]
         print("Using RTX 3090 configuration. Workers: ", global_config.general_config["num_workers"])
@@ -77,11 +77,12 @@ def update_config(opts):
         global_config.general_config["num_workers"] = 4
         global_config.batch_size = network_config["batch_size"][2]
         global_config.load_size = network_config["load_size"][2]
-        global_config.a_path = "/home/neildelgallego/Places Dataset/*.jpg"
-        global_config.b_path = "/home/neildelgallego/SynthV3_Raw/{dataset_version}/sequence.0/*.camera.png"
+        global_config.a_path = "/home/neildelgallego/{dataset_version}/*.jpg"
+        global_config.b_path = "/home/neildelgallego/SynthV3_Raw/{dataset_version}/*.png"
         print("Using TITAN Workstation configuration. Workers: ", global_config.general_config["num_workers"])
 
-    global_config.b_path = global_config.b_path.format(dataset_version=network_config["dataset_version"])
+    global_config.a_path = global_config.a_path.format(dataset_version=network_config["dataset_a_version"])
+    global_config.b_path = global_config.b_path.format(dataset_version=network_config["dataset_b_version"])
 
 
 def main(argv):
