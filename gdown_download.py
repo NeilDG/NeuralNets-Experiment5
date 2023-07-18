@@ -19,10 +19,10 @@ def main(argv):
         output_dir = "/home/jupyter-neil.delgallego/SynthV3_Raw/"
 
     # KITTI Depth
-    direct_link = "https://drive.google.com/file/d/1mGXYC0qG2maqG8QcHKqoQwjzrkkRVKwq/view?usp=sharing"
-    id = direct_link.split("/d/")[1].split("/")[0]
-    url = "https://drive.google.com/uc?id="+id
-    gdown.download(url, output=output_dir, use_cookies=False)
+    # direct_link = "https://drive.google.com/file/d/1mGXYC0qG2maqG8QcHKqoQwjzrkkRVKwq/view?usp=sharing"
+    # id = direct_link.split("/d/")[1].split("/")[0]
+    # url = "https://drive.google.com/uc?id="+id
+    # gdown.download(url, output=output_dir, use_cookies=False)
 
     # # v06_iid_base
     # url = "https://drive.google.com/drive/folders/1mCTQAh_sVFO3UtYXwlYm8_UGTTEwJ_XE?usp=sharing"
