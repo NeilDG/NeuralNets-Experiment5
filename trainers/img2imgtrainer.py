@@ -231,6 +231,7 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
             self.G_A2B.eval()
             self.G_B2A.eval()
+
             img_a2b = self.G_A2B(img_a)
             img_b2a = self.G_B2A(img_b)
             return img_a2b, img_b2a
@@ -247,10 +248,22 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
             if(label == "Train"):
                 img_a = self.transform_op(img_a)
                 img_b = self.transform_op(img_b)
+                input_map["img_a"] = img_a
+                input_map["img_b"] = img_b
 
-            img_a2b, img_b2a = self.test(input_map)
-            img_a2b2a = self.G_B2A(self.G_A2B(img_a))
-            img_b2a2b = self.G_A2B(self.G_B2A(img_b))
+                img_a2b, img_b2a = self.test(input_map)
+                img_a2b2a = self.G_B2A(self.G_A2B(img_a))
+                img_b2a2b = self.G_A2B(self.G_B2A(img_b))
+
+            else: #perform patch extraction for images larger than the network's trained patch size --> to support visual transformer-based models.
+                config_holder = ConfigHolder.getInstance()
+                patch_size = config_holder.get_network_attribute("patch_size", 64)
+                img_a2b = tensor_utils.patched_infer(img_a, self.G_A2B, patch_size)
+                img_b2a = tensor_utils.patched_infer(img_b, self.G_B2A, patch_size)
+
+                img_a2b2a = tensor_utils.patched_infer(img_a2b, self.G_B2A, patch_size)
+                img_b2a2b = tensor_utils.patched_infer(img_b2a, self.G_A2B, patch_size)
+
 
             self.visdom_reporter.plot_image(img_a, str(label) + " Input A Images - " + style_transfer_version + str(self.iteration))
             self.visdom_reporter.plot_image(img_a2b2a, str(label) + " Input A Cycle - " + style_transfer_version + str(self.iteration))
