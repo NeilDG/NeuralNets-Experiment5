@@ -33,7 +33,7 @@ def main(argv):
     # gdown.download_folder(url, output=output_dir, use_cookies=False)
 
     # v09_iid_base
-    url = ""
+    url = "https://drive.google.com/drive/folders/16CaRlC2_LpA4DOBrI-Rcs59Kguez9OHD?usp=sharing"
     gdown.download_folder(url, output=output_dir, use_cookies=False)
 
     #download folder template
