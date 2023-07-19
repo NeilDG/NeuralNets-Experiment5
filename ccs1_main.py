@@ -5,41 +5,9 @@ import time
 import GPUtil
 
 def train_proper(gpu_device):
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=1")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=2")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=3")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=4")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=5")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=6")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=7")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=10")
-
-    os.system("python \"train_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
-             "--plot_enabled=0 --network_version=\"depth_v01.02\" "
-             "--iteration=11")
+    os.system("python \"train_img2img_main.py\" --server_config=1 --img_to_load=-1 --cuda_device=" +gpu_device+ " "
+              "--plot_enabled=0 --save_every_iter=500 --network_version=\"synth2real_v02.01\" "
+              "--iteration=1")
 def main():
     EXECUTION_TIME_IN_HOURS = 12
     execution_seconds = 3600 * EXECUTION_TIME_IN_HOURS
