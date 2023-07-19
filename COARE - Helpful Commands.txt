@@ -85,7 +85,7 @@ unzip "KITTI Depth Test.zip"
 rm -rf "NeuralNets-Experiment5-V01.XX.XX"
 rm -rf "NeuralNets-GenerativeExperiment-V60.XX.XX"
 rm -rf "Places Dataset"
-rm -rf "SynthWeather Dataset 10/v50_places"
+rm -rf "SynthV3_Raw/v09_iid_base"
 mkdir "SynthWeather Dataset 10"
 
 
