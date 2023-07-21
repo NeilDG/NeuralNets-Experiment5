@@ -92,10 +92,7 @@ rm -rf "Places Dataset"
 mv "Places Dataset 2/" "./Places Dataset"
 
 
-zip -r "checkpoints.zip" "rgb2albedo_v9.01_7.pt" "rgb2albedo_v9.01_8.pt" "rgb2albedo_v9.01_9.pt" "rgb2albedo_v9.01_10.pt" "rgb2albedo_v9.01_11.pt" "rgb2albedo_v9.01_12.pt" "rgb2albedo_v9.01_13.pt" "rgb2albedo_v9.01_14.pt" \
-"rgb2mask_v9.01_7.pt" "rgb2mask_v9.01_8.pt" "rgb2mask_v9.01_9.pt" "rgb2mask_v9.01_10.pt" "rgb2mask_v9.01_11.pt" "rgb2mask_v9.01_12.pt" "rgb2mask_v9.01_13.pt" "rgb2mask_v9.01_14.pt" \
-"rgb2shading_v9.01_7.pt" "rgb2shading_v9.01_8.pt" "rgb2shading_v9.01_9.pt" "rgb2shading_v9.01_10.pt" "rgb2shading_v9.01_11.pt" "rgb2shading_v9.01_12.pt" "rgb2shading_v9.01_13.pt" "rgb2shading_v9.01_14.pt"
-
+zip -r "checkpoint.zip" "./checkpoint"
 zip -r "NeuralNets-CCS.zip" "./NeuralNets-GenerativeExperiment-V9.XX.XX" -x "./NeuralNets-GenerativeExperiment-V9.XX.XX/checkpoint/*"
 zip -F "v28_istd.zip" --out "v28_istd_fixed.zip"
 unzip "v28_istd_fixed.zip" -d "/home/neil_delgallego/SynthWeather Dataset 10/v28_istd/"
