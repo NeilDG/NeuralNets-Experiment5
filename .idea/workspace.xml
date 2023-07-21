@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3b26d531-d5e4-4eb2-b3b5-b1380f2b223c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gdown_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/gdown_download.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/ittr_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/ittr_transformer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rtx3090_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/rtx3090_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slurm_download.sh" beforeDir="false" afterPath="$PROJECT_DIR$/slurm_download.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trainers/img2imgtrainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainers/img2imgtrainer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +136,13 @@
       <workItem from="1689424346288" duration="2248000" />
       <workItem from="1689435950884" duration="608000" />
       <workItem from="1689561737118" duration="2379000" />
-      <workItem from="1689584391363" duration="22158000" />
+      <workItem from="1689584391363" duration="33890000" />
+      <workItem from="1689777230516" duration="60000" />
+      <workItem from="1689777297042" duration="228000" />
+      <workItem from="1689819826764" duration="773000" />
+      <workItem from="1689824289803" duration="4750000" />
+      <workItem from="1689909900067" duration="509000" />
+      <workItem from="1689913251491" duration="1718000" />
     </task>
     <servers />
   </component>
@@ -148,7 +150,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Synth_3DLocalization$rtx3090_main.coverage" NAME="rtx3090_main Coverage Results" MODIFIED="1689681488021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Synth_3DLocalization$rtx3090_main.coverage" NAME="rtx3090_main Coverage Results" MODIFIED="1689914686835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Synth_3DLocalization$titan2_main.coverage" NAME="titan2_main Coverage Results" MODIFIED="1688648695908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
