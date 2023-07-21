@@ -69,3 +69,55 @@ class ITTRTransformer(nn.Module):
 
     def forward(self, x):
         return self.model(x)
+
+#Uses NN upsample
+class ITTRTransformerV2(nn.Module):
+    def __init__(self, input_nc=3, output_nc=3, downsampling_blocks = 2, perception_blocks=9, dropout_rate = 0.0, norm = "batch"):
+        super(ITTRTransformerV2, self).__init__()
+
+        print("Set CycleGAN norm to: ", norm, "Dropout rate: ", dropout_rate)
+
+        # Initial convolution block
+        model = [   nn.ReflectionPad2d(2),
+                    nn.Conv2d(input_nc, 64, 7),
+                    common_blocks.NormBlock(64, norm),
+                    nn.ReLU(inplace=True) ]
+
+        # Downsampling
+        in_features = 64
+        out_features = in_features*2
+        for _ in range(downsampling_blocks):
+            model += [  nn.Conv2d(in_features, out_features, 3, stride=2, padding=1),
+                        common_blocks.NormBlock(out_features, norm),
+                        nn.ReLU(inplace=True)
+                    ]
+
+            model +=[nn.Dropout2d(p = dropout_rate)]
+            in_features = out_features
+            out_features = clamp(in_features*2, 32768)
+
+        # Residual blocks
+        for _ in range(perception_blocks):
+            model += [HPB(dim = in_features, ff_dropout=dropout_rate, attn_dropout=dropout_rate, dim_head=16)]
+
+        # Upsampling
+        out_features = in_features//2
+        for _ in range(downsampling_blocks):
+            model += [  nn.ConvTranspose2d(in_features, out_features, 3, stride=2, padding=1, output_padding=1),
+                        common_blocks.NormBlock(out_features, norm),
+                        nn.ReLU(inplace=True)]
+
+            model += [nn.Dropout2d(p=dropout_rate)]
+            in_features = out_features
+            out_features = in_features//2
+
+        # Output layer
+        model += [  nn.ReflectionPad2d(3),
+                    nn.Conv2d(64, output_nc, 7),
+                    common_blocks.LastLayerBlock() ]
+
+        self.model = nn.Sequential(*model)
+        self.model.apply(xavier_weights_init)
+
+    def forward(self, x):
+        return self.model(x)

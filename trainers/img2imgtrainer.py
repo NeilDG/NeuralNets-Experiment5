@@ -222,18 +222,24 @@ class Img2ImgTrainer(abstract_iid_trainer.AbstractIIDTrainer):
 
     def test(self, input_map, label="Test"):
         with torch.no_grad():
+            self.G_A2B.eval()
+            self.G_B2A.eval()
+
             img_a = input_map["img_a"]
             img_b = input_map["img_b"]
 
             if(label == "Train"):
                 img_a = self.transform_op(img_a)
                 img_b = self.transform_op(img_b)
+                img_a2b = self.G_A2B(img_a)
+                img_b2a = self.G_B2A(img_b)
 
-            self.G_A2B.eval()
-            self.G_B2A.eval()
+            else:  # perform patch extraction for images larger than the network's trained patch size --> to support visual transformer-based models.
+                config_holder = ConfigHolder.getInstance()
+                patch_size = config_holder.get_network_attribute("patch_size", 64)
+                img_a2b = tensor_utils.patched_infer(img_a, self.G_A2B, patch_size)
+                img_b2a = tensor_utils.patched_infer(img_b, self.G_B2A, patch_size)
 
-            img_a2b = self.G_A2B(img_a)
-            img_b2a = self.G_B2A(img_b)
             return img_a2b, img_b2a
 
     def visdom_plot(self, iteration):

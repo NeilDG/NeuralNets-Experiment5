@@ -54,9 +54,9 @@ else
   OUTPUT_DIR="/home/jupyter-neil.delgallego/SynthV3_Raw/"
 fi
 
-DATASET_NAME="KITTI Depth Test"
-echo "$OUTPUT_DIR/$DATASET_NAME.zip"
-unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
+#DATASET_NAME="KITTI Depth Test"
+#echo "$OUTPUT_DIR/$DATASET_NAME.zip"
+#unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 
 #DATASET_NAME="v05_iid"
 #echo "$OUTPUT_DIR/$DATASET_NAME.zip"
@@ -70,15 +70,20 @@ unzip "$OUTPUT_DIR/$DATASET_NAME.zip" -d "$OUTPUT_DIR"
 #zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
 #unzip "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
 
-DATASET_NAME="v08_iid_base/v08_iid"
+DATASET_NAME="v09_iid_base/v09_iid"
 zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
 unzip "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
+
+#DATASET_NAME="places_dataset_base/places"
+#zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
+#unzip "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
+
 #
 #zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
 #unzip "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
 #
 
-if [ $SERVER_CONFIG == 4 ]
+if [ $SERVER_CONFIG == 5 ]
 then
-  python "rl208_main.py"
+  python3 "titan2_main.py"
 fi
