@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b26d531-d5e4-4eb2-b3b5-b1380f2b223c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/script_gpu_3.slurm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script_gpu_4.slurm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COARE - Helpful Commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/COARE - Helpful Commands.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gdown_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/gdown_download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparam_tables/synth2real_iter.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparam_tables/synth2real_iter.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.00.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.00.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.01.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.01.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rtx3090_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/rtx3090_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slurm_download.sh" beforeDir="false" afterPath="$PROJECT_DIR$/slurm_download.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_img2img_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_img2img_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainers/abstract_iid_trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainers/abstract_iid_trainer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +152,17 @@
       <workItem from="1689819826764" duration="773000" />
       <workItem from="1689824289803" duration="4750000" />
       <workItem from="1689909900067" duration="509000" />
-      <workItem from="1689913251491" duration="1718000" />
+      <workItem from="1689913251491" duration="8706000" />
+      <workItem from="1690125353852" duration="5581000" />
+      <workItem from="1690256937897" duration="2895000" />
+      <workItem from="1690297053355" duration="618000" />
+      <workItem from="1690299085420" duration="1404000" />
+      <workItem from="1690336023660" duration="3677000" />
+      <workItem from="1690388962979" duration="1109000" />
+      <workItem from="1690422751346" duration="5397000" />
+      <workItem from="1690560328678" duration="2345000" />
+      <workItem from="1691064349534" duration="73000" />
+      <workItem from="1691546375698" duration="3724000" />
     </task>
     <servers />
   </component>
@@ -150,7 +170,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Synth_3DLocalization$rtx3090_main.coverage" NAME="rtx3090_main Coverage Results" MODIFIED="1689914686835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Synth_3DLocalization$rtx3090_main.coverage" NAME="rtx3090_main Coverage Results" MODIFIED="1691550958159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Synth_3DLocalization$titan2_main.coverage" NAME="titan2_main Coverage Results" MODIFIED="1688648695908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

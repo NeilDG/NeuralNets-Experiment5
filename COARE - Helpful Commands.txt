@@ -32,6 +32,9 @@ sbatch slurm_download.sh
 sbatch -w saliksik-gpu-09 script_gpu_1.slurm "depth_v01.01_iid" 5
 sbatch -w saliksik-gpu-10 script_gpu_2.slurm "depth_v01.01_iid" 1
 
+sbatch script_gpu_3.slurm "synth2real_v02.01" 5
+sbatch script_gpu_4.slurm "synth2real_v02.01" 6
+
 sbatch --dependency=afterany:342338 script_debug.slurm
 sbatch --dependency=afterany:342351 script_1.slurm
 sbatch -w saliksik-gpu-06 slurm_install_gpu.slurm

@@ -19,3 +19,39 @@ hyperparams:
     cycle_weight: 10.0
     adv_weight: 1.0
     is_bce: 1
+  5:
+    id_weight: 1.0
+    cycle_weight: 10.0
+    l1_weight: 1.0
+    adv_weight: 1.0
+    is_bce: 0
+  6:
+    id_weight: 10.0
+    cycle_weight: 10.0
+    l1_weight: 1.0
+    adv_weight: 1.0
+    is_bce: 0
+  7:
+    id_weight: 0.0
+    cycle_weight: 1.0
+    l1_weight: 0.0
+    adv_weight: 1.0
+    is_bce: 0
+  8:
+    id_weight: 1.0
+    cycle_weight: 1.0
+    l1_weight: 0.0
+    adv_weight: 1.0
+    is_bce: 0
+  9:
+    id_weight: 0.0
+    cycle_weight: 1.0
+    l1_weight: 1.0
+    adv_weight: 1.0
+    is_bce: 0
+  10:
+    id_weight: 1.0
+    cycle_weight: 1.0
+    l1_weight: 1.0
+    adv_weight: 1.0
+    is_bce: 0

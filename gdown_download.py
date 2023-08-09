@@ -33,12 +33,12 @@ def main(argv):
     # gdown.download_folder(url, output=output_dir, use_cookies=False)
 
     # v09_iid_base
-    url = "https://drive.google.com/drive/folders/16CaRlC2_LpA4DOBrI-Rcs59Kguez9OHD?usp=sharing"
-    gdown.download_folder(url, output=output_dir, use_cookies=False)
+    # url = "https://drive.google.com/drive/folders/16CaRlC2_LpA4DOBrI-Rcs59Kguez9OHD?usp=sharing"
+    # gdown.download_folder(url, output=output_dir, use_cookies=False)
 
     # places
-    # url = "https://drive.google.com/drive/folders/16B1KbQWKh-O3cToZixSv2nD4sho06IyF?usp=sharing"
-    # gdown.download_folder(url, output=output_dir, use_cookies=False)
+    url = "https://drive.google.com/drive/folders/16B1KbQWKh-O3cToZixSv2nD4sho06IyF?usp=sharing"
+    gdown.download_folder(url, output=output_dir, use_cookies=False)
 
     #download folder template
     # url = ""

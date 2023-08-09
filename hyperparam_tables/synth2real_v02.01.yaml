@@ -21,7 +21,7 @@ min_epochs: 25
 max_epochs: 30
 
 dataset_a_version: "Places Dataset"
-dataset_a_repeats: 10
+dataset_a_repeats: 2
 
 dataset_b_version: "v09_iid/rgb"
-dataset_b_repeats: 30
+dataset_b_repeats: 9

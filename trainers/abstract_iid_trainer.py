@@ -81,9 +81,13 @@ class NetworkCreator():
                                               dropout_rate=network_config["dropout_rate"], norm=network_config["norm_mode"]).to(self.gpu_device)
 
             D_A = cycle_gan.SpectralDiscriminator(input_nc=3).to(self.gpu_device)
-        else:
+        elif(model_type == 5):
             G_A = ittr_transformer.ITTRTransformer(input_nc=network_config["input_nc"], output_nc=3, perception_blocks=network_config["num_blocks"],
                                       dropout_rate=network_config["dropout_rate"], norm=network_config["norm_mode"]).to(self.gpu_device)
+        else:
+            #for 256x256
+            G_A = ittr_transformer.ITTRTransformer(input_nc=network_config["input_nc"], downsampling_blocks=4, output_nc=3, perception_blocks=network_config["num_blocks"],
+                                                   dropout_rate=network_config["dropout_rate"], norm=network_config["norm_mode"]).to(self.gpu_device)
 
 
         return G_A, D_A

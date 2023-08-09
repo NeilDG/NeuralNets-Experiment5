@@ -25,14 +25,17 @@ def test_depth():
               "--iteration=5")
 
 def train_img2img():
-    os.system("python \"train_img2img_main.py\" --server_config=3 --img_to_load=-1 "
-              "--plot_enabled=0 --save_every_iter=500 --network_version=\"synth2real_v02.00\" "
-              "--iteration=1")
+    # os.system("python \"train_img2img_main.py\" --server_config=3 --img_to_load=-1 "
+    #           "--plot_enabled=0 --save_every_iter=500 --network_version=\"synth2real_v02.00\" "
+    #           "--iteration=1")
     #
     # os.system("python \"train_img2img_main.py\" --server_config=3 --img_to_load=-1 "
     #           "--plot_enabled=0 --save_every_iter=500 --network_version=\"synth2real_v02.01\" "
     #           "--iteration=1")
 
+    os.system("python \"train_img2img_main.py\" --server_config=3 --img_to_load=500 "
+              "--plot_enabled=1 --save_every_iter=10 --network_version=\"synth2real_v02.02\" "
+              "--iteration=5")
 
 def test_img2img():
     os.system("python \"test_img2img_main.py\" --server_config=3 --img_to_load=1000 "
@@ -41,10 +44,10 @@ def test_img2img():
 
 def main():
     # train_depth()
-    test_depth()
+    # test_depth()
     #
-    # train_img2img()
-    #  test_img2img()
+    train_img2img()
+     # test_img2img()
     # os.system("shutdown /s /t 1")
 
 if __name__ == "__main__":
