@@ -30,15 +30,15 @@ source activate NeilGAN_V2
 #pip install --upgrade --no-cache-dir gdown
 #pip install PyYAML
 
-if [ $SERVER_CONFIG == 0 ]
-then
-  srun python "gdown_download.py" --server_config=$SERVER_CONFIG
-elif [ $SERVER_CONFIG == 5 ]
-then
-  python3 "gdown_download.py" --server_config=$SERVER_CONFIG
-else
-  python "gdown_download.py" --server_config=$SERVER_CONFIG
-fi
+#if [ $SERVER_CONFIG == 0 ]
+#then
+#  srun python "gdown_download.py" --server_config=$SERVER_CONFIG
+#elif [ $SERVER_CONFIG == 5 ]
+#then
+#  python3 "gdown_download.py" --server_config=$SERVER_CONFIG
+#else
+#  python "gdown_download.py" --server_config=$SERVER_CONFIG
+#fi
 
 
 if [ $SERVER_CONFIG == 0 ]
@@ -71,8 +71,8 @@ fi
 #unzip "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
 
 DATASET_NAME="v09_iid_base/v09_iid"
-zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
-unzip "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
+zip -F -q "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
+unzip -q "$OUTPUT_DIR/$DATASET_NAME+fixed.zip" -d "$OUTPUT_DIR"
 
 #DATASET_NAME="places_dataset_base/places"
 #zip -F "$OUTPUT_DIR/$DATASET_NAME.zip" --out "$OUTPUT_DIR/$DATASET_NAME+fixed.zip"
