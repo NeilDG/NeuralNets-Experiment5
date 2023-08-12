@@ -44,6 +44,8 @@ def update_config(opts):
         global_config.disable_progress_bar = True
         global_config.a_path = "/scratch3/neil.delgallego/{dataset_version}/*.jpg"
         global_config.b_path = "/scratch3/neil.delgallego/SynthV3_Raw/{dataset_version}/*.png"
+        global_config.batch_size = network_config["batch_size"][0]
+        global_config.load_size = network_config["load_size"][0]
         print("Using COARE configuration. Workers: ", global_config.general_config["num_workers"])
 
     elif(global_config.server_config == 1): #CCS Cloud

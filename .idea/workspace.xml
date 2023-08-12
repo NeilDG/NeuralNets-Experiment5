@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b26d531-d5e4-4eb2-b3b5-b1380f2b223c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/script_gpu_3.slurm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script_gpu_4.slurm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/COARE - Helpful Commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/COARE - Helpful Commands.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gdown_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/gdown_download.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparam_tables/synth2real_iter.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparam_tables/synth2real_iter.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.00.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.00.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.01.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparam_tables/synth2real_v02.01.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rtx3090_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/rtx3090_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slurm_download.sh" beforeDir="false" afterPath="$PROJECT_DIR$/slurm_download.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_img2img_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_img2img_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trainers/abstract_iid_trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainers/abstract_iid_trainer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +153,12 @@
       <workItem from="1690422751346" duration="5397000" />
       <workItem from="1690560328678" duration="2345000" />
       <workItem from="1691064349534" duration="73000" />
-      <workItem from="1691546375698" duration="3724000" />
+      <workItem from="1691546375698" duration="3937000" />
+      <workItem from="1691553859121" duration="1148000" />
+      <workItem from="1691660750334" duration="3666000" />
+      <workItem from="1691743636452" duration="767000" />
+      <workItem from="1691762770821" duration="39000" />
+      <workItem from="1691806228977" duration="713000" />
     </task>
     <servers />
   </component>
